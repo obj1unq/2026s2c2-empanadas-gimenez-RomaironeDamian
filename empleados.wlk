@@ -1,8 +1,12 @@
 //Escribir aqui los objetos
+//Escribir aqui los objetos
 object gimenez {
     var fondos = 300000 
 
     method pagarSueldo(empleado) {
+      if (empleado.sueldo() > fondos) {
+        self.error("No se pueden pagar los sueldos si no se tienen fondos suficientes")
+      }
       fondos = fondos - empleado.sueldo()
       empleado.recibirSueldo()
     }
@@ -13,40 +17,36 @@ object gimenez {
 }
 
 object galvan {
-    var sueldo = 15000
-    var dineroActual = 0
-    var deuda = 0
-    method sueldo(_sueldo) {
-      sueldo = _sueldo
+    var sueldo =15000
+    var saldo = 0
+    method recibirSueldo(){
+            saldo = sueldo + saldo
     }
-
-    method sueldo() {
-      return sueldo
+    method sueldo(_sueldo){
+        sueldo = _sueldo
     }
-
-    method deuda() {
-      return deuda
+    method sueldo(){
+        return sueldo
     }
-
-    method dinero() {
-      return dineroActual
-    }
-
-    method gastar(cuanto) {
-        if (cuanto > dineroActual){
-            deuda = deuda + (cuanto - dineroActual)
-            dineroActual = 0
+    method deuda(){
+        if (saldo > 0){
+            return 0
         } else {
-            dineroActual = dineroActual - cuanto
+            return saldo * (-1)
         }
     }
-
-    method recibirSueldo() {
-        if (sueldo > deuda){
-            dineroActual = dineroActual + (sueldo - deuda)
-            deuda = 0
+    method dinero(){
+        if (saldo > 0){
+            return saldo
         } else {
-            deuda = deuda - sueldo
+            return 0
+        }
+    }
+    method gastar(cantidad){
+        if (cantidad > (saldo)){
+            saldo = saldo + cantidad * (-1)
+        }else{
+            saldo = cantidad + saldo
         }
     }
 }
