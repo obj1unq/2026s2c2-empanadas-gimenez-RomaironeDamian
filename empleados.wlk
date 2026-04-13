@@ -4,11 +4,15 @@ object gimenez {
     var fondos = 300000 
 
     method pagarSueldo(empleado) {
+      self.validarFondos(empleado)
+      fondos = fondos - empleado.sueldo()
+      empleado.recibirSueldo()
+    }
+
+    method validarFondos(empleado) {
       if (empleado.sueldo() > fondos) {
         self.error("No se pueden pagar los sueldos si no se tienen fondos suficientes")
       }
-      fondos = fondos - empleado.sueldo()
-      empleado.recibirSueldo()
     }
 
     method fondo() {
