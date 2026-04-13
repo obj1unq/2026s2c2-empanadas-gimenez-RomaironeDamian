@@ -1,0 +1,10 @@
+import empleados.*
+
+test "No se pueden pagar los sueldos" {
+    galvan.sueldo(300000)
+    gimenez.pagarSueldo(galvan)
+    assert.equals(0 , gimenez.fondo())
+    galvan.sueldo(15000)
+    gimenez.pagarSueldo(galvan)
+    assert.throwsException({gimenez.pagarSueldo(galvan)})
+}
